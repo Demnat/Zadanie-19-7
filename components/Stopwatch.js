@@ -37,10 +37,6 @@ class Stopwatch extends React.Component {
         return `${this.pad0(times.minutes)}:${this.pad0(times.seconds)}:${this.pad0(Math.floor(times.miliseconds))}`;
     }
 
-    //print() { <- to chyba robi render ?
-        
-    // }  
-
     calculate() {
         this.state.times.miliseconds += 1;
         if (this.state.times.miliseconds >= 100) {
@@ -63,21 +59,18 @@ class Stopwatch extends React.Component {
         console.log(this.state.running);
         if (!this.state.running) {
             this.setState({running: true});
-            // this.state.running = true;
             this.watch = setInterval(() => this.step(), 10);
         }
     }
 
     stop() {
         this.setState({running: false});
-        // this.state.running = false;
         clearInterval(this.watch);
     }
 
     resetCounter() {
         if (!this.state.running) {
             this.reset();
-           // this.print();   jak wyżej
         }
     }
 
@@ -108,7 +101,9 @@ class Stopwatch extends React.Component {
                 <div className={'stopwatch'}>
                     {this.format(this.state.times)}
                 </div>
-                <Results results={this.state.results}/>
+                <Results 
+                    results={this.state.results}
+                />
             </div>
         );
     }
